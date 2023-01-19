@@ -1,0 +1,35 @@
+<h1>予定一覧</h1>
+<p><%= link_to "新規作成", new_plan_path %></p>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>タイトル</th>
+    <th>開始日</th>
+    <th>終了日</th>
+    <th>終日</th>
+    <th>更新日時</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <% @plans.each do |plan| %>
+    <tr>
+      <td><%= plan.id %></td>
+      <td><%= plan.title %></td>
+      <td><%= plan.start_date %></td>
+      <td><%= plan.end_date %></td>
+      <td><%= plan.checkbox %></td>
+      <td><%= plan.created_at %></td>
+      <td><%= link_to "詳細", plan_path(plan) %></td>
+      <td><%= link_to "編集", edit_plan_path(plan) %></td>
+      <td><%= link_to "削除", plan_path(plan), method: :delete, data: { confirm: "本当に削除しますか?"} %></td>
+    </tr>
+   <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,27 @@
+<p><%= link_to "<- 一覧に戻る", plans_path %></p>
+<p><%= link_to "編集する", edit_plan_path(@plan) %></p>
+
+<p><%= @plan.title %></p>
+
+<p><%= flash[:notice] %></p>
+<table>
+  <tr>
+    <th>開始日</th>
+    <td><%= @plan.start_date %></td>
+  <tr>
+
+  <tr>
+    <th>終了日</th>
+    <td><%= @plan.end_date %></td>
+  </tr>
+
+  <tr>
+    <th>終日</th>
+    <td><%= @plan.checkbox %></td>
+  </tr>
+
+  <tr>
+    <th>スケジュールメモ</th>
+    <td><%= @plan.memo %>
+  </tr>
+</table>
