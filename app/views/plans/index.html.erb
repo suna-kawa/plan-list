@@ -24,7 +24,7 @@
       <td><%= plan.title %></td>
       <td><%= plan.start_date.strftime("%Y/%m/%d") %></td>
       <td><%= plan.end_date.strftime("%Y/%m/%d") %></td>
-      <td><%= plan.checkbox %></td>
+      <td><%= plan.checkbox ? '○' : ' ' %></td>
       <td><%= plan.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
       <td><%= link_to "詳細", plan_path(plan) %></td>
       <td><%= link_to "編集", edit_plan_path(plan) %></td>
