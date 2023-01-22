@@ -1,12 +1,13 @@
-<h1>予定一覧</h1>
-<p><%= link_to "新規作成", new_plan_path %></p>
+<p class="fs-1">予定一覧</p>
+
+<%= link_to "新規作成", new_plan_path, class: 'btn btn-outline-primary', data: {"turbolinks" => false} %>
 
 <% if flash[:notice] %>
   <p class="notice"><%= flash[:notice] %></p>
 <% end %>
 
-<table>
-  <thead>
+<table class="table table-dark table-striped text-center">
+<thead>
   <tr>
     <th>ID</th>
     <th>タイトル</th>
@@ -15,25 +16,46 @@
     <th>終日</th>
     <th>更新日時</th>
   </tr>
-  </thead>
-
-  <tbody>
-    <% @plans.each do |plan| %>
-    <tr>
-      <td><%= plan.id %></td>
-      <td><%= plan.title %></td>
-      <td><%= plan.start_date.strftime("%Y/%m/%d") %></td>
-      <td><%= plan.end_date.strftime("%Y/%m/%d") %></td>
-      <td><%= plan.checkbox ? '○' : ' ' %></td>
-      <td><%= plan.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
-      <td><%= link_to "詳細", plan_path(plan) %></td>
-      <td><%= link_to "編集", edit_plan_path(plan) %></td>
-      <td><%= link_to "削除", plan_path(plan), method: :delete, data: { confirm: "本当に削除しますか?"} %></td>
-    </tr>
-   <% end %>
+</thead>
+<tbody>
+  <tr>
+  <% @plans.each do |plan| %>
+  <td id="num"><%= plan.id %></td>
+  <td><%= plan.title %></td>
+  <td><%= plan.start_date.strftime("%Y/%m/%d") %></td>
+  <td><%= plan.end_date.strftime("%Y/%m/%d") %></td>
+  <td><%= plan.checkbox ? '○' : ' ' %></td>
+  <td><%= plan.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
+  <td><%= link_to "詳細", plan_path(plan), class: 'btn btn-outline-primary' %></td>
+  <td><%= link_to "編集", edit_plan_path(plan), class: 'btn btn-outline-primary', data: {"turbolinks" => false} %></td>
+  <td><a href="" class='btn btn-outline-primary', id: "delete-botton", data-bs-toggle="modal", data-bs-target="#staticBackdrop">削除</a></td>
+  </tr>
   </tbody>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="staticBackdropLabel">プラン削除画面</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    本当に削除しますか??
+  </div>
+  <div class="modal-footer">
+    <%= link_to "削除", plan_path(plan), method: :delete, class: 'btn btn-outline-primary', id: 'link' %>
+    <%= link_to "キャンセル", plans_path, class: 'btn btn-outline-secondary' %>
+  </div>
+  </div>
+  </div>
+</div>
+<% end %>
 </table>
-
-
-<p>予定合計 <%= @plans.count %>件</p>
-<p>本日の日付<%= Time.current.strftime('%Y/%m/%d') %></p>
+<div class="card">
+  <div class="card-body">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">予定合計: <%= @plans.count %>件</li>
+    <li class="list-group-item">本日の日付: <%= Time.current.strftime('%Y/%m/%d') %></li>
+  </ul>
+  </div>
+</div>

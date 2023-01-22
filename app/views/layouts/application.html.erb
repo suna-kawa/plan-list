@@ -7,9 +7,45 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
 
-  <body>
-    <%= yield %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/css/bootstrap-material-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/ja.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.min.js"></script>
+    
+
+  <script>
+    $(function(){
+    $(".calendar").bootstrapMaterialDatePicker({
+    weekStart:0,
+    lang: "ja",
+    time: false,
+    format:"YYYY/MM/DD",
+    minDate:moment()
+  });
+  });
+  let planId = document.getElementById('num');
+  let url = 'http://localhost:3000/plans/${planId}';
+  let link = document.getElementById('link');
+  window.onload = function () {
+  document.getElementById('delete-button').onclick = function () {
+    let url = planId;
+    link.setAttribute('href', url);
+  };
+  };
+  </script>
+  </head>
+  
+<body>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">スケジュール管理</span>
+  </div>
+</nav>
+<div class="container">
+  <%= yield %>
+</div>
   </body>
 </html>
