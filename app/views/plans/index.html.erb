@@ -2,10 +2,6 @@
 
 <%= link_to "新規作成", new_plan_path, class: 'btn btn-outline-primary', data: {"turbolinks" => false} %>
 
-<% if flash[:notice] %>
-  <p class="notice"><%= flash[:notice] %></p>
-<% end %>
-
 <table class="table table-dark table-striped text-center">
 <thead>
   <tr>

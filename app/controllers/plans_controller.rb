@@ -10,7 +10,7 @@ class PlansController < ApplicationController
   def create
     @plan = Plan.new(params.require(:plan).permit(:title, :start_date, :end_date, :checkbox, :memo))
     if @plan.save
-      flash[:notice] = "プランを登録しました"
+      flash[:success] = "プランを登録しました"
       redirect_to plans_path
     else
       render "new"
@@ -28,7 +28,7 @@ class PlansController < ApplicationController
   def update
     @plan = Plan.find(params[:id])
     if @plan.update(params.require(:plan).permit(:title, :start_date, :end_date, :checkbox, :memo))
-      flash[:notice] = "ユーザー#{@plan.id}が内容を変更しました"
+      flash[:info] = "ユーザー#{@plan.id}が内容を変更しました"
       redirect_to plan_path(@plan)
     else
       render "edit"
@@ -38,7 +38,7 @@ class PlansController < ApplicationController
   def destroy
     @plan = Plan.find(params[:id])
     @plan.destroy
-    flash[:notice] = "ユーザーを削除しました"
+    flash[:info] = "ユーザーを削除しました"
     redirect_to plans_path
   end
 end
