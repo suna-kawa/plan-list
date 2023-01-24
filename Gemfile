@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 
 # rails ja
 gem 'rails-i18n'
+# pry-rails
+gem 'pry-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

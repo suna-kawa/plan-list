@@ -16,7 +16,7 @@
 <tbody>
   <tr>
   <% @plans.each do |plan| %>
-  <td id="num"><%= plan.id %></td>
+  <td><%= plan.id %></td>
   <td><%= plan.title %></td>
   <td><%= plan.start_date.strftime("%Y/%m/%d") %></td>
   <td><%= plan.end_date.strftime("%Y/%m/%d") %></td>
@@ -24,11 +24,13 @@
   <td><%= plan.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
   <td><%= link_to "詳細", plan_path(plan), class: 'btn btn-outline-primary' %></td>
   <td><%= link_to "編集", edit_plan_path(plan), class: 'btn btn-outline-primary', data: {"turbolinks" => false} %></td>
-  <td><a href="" class='btn btn-outline-primary', id: "delete-botton", data-bs-toggle="modal", data-bs-target="#staticBackdrop">削除</a></td>
-  </tr>
-  </tbody>
+  <td><a href="" class='btn btn-outline-primary', id: "delete-botton", data-bs-toggle="modal", data-bs-target="#staticBackdrop-<%= plan.id %>">削除</a></td>
+
+</tbody>
+
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+<div class="modal fade" id="staticBackdrop-<%= plan.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 <div class="modal-dialog">
   <div class="modal-content">
   <div class="modal-header">

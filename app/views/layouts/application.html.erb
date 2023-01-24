@@ -26,15 +26,6 @@
     minDate:moment()
   });
   });
-  let planId = document.getElementById('num');
-  let url = 'http://localhost:3000/plans/${planId}';
-  let link = document.getElementById('link');
-  window.onload = function () {
-  document.getElementById('delete-button').onclick = function () {
-    let url = planId;
-    link.setAttribute('href', url);
-  };
-  };
   </script>
   </head>
   
@@ -50,5 +41,13 @@
   <% end %>
   <%= yield %>
 </div>
-  </body>
+<script>
+$(".delete-button").on("click", {
+    const planId = $(this).attr('id');
+    const url = 'http://localhost:3000/plans/${planId}';
+    let link = document.getElementById('link');
+    link.setAttribute('href', url);
+  });
+</script>
+</body>
 </html>
